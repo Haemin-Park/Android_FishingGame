@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="330dp"
+    android:layout_height="wrap_content">
+    <!-- 타이틀바 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:fontFamily="@font/slkscr"
+        android:text="BOOK"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="#FFFFFF"
+        android:padding="7dp"/>
+
+    <LinearLayout
+        android:background="@drawable/shape_list"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:paddingTop="8dp"
+        android:layout_height="match_parent">
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:weightSum="8"
+            android:background="@drawable/shape_list"
+            android:orientation="vertical">
+<LinearLayout
+    android:layout_width="80dp"
+    android:layout_height="80dp">
+            <ImageView
+                android:id="@+id/sfish_image"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/pic1" /></LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="1dp"
+                android:background="#000000"/>
+            <TextView
+                android:id="@+id/sfish_name"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:layout_weight="7"
+                android:fontFamily="@font/slkscr"
+                android:gravity="center"
+                android:text="special fish"
+                android:textColor="#816D6D6D"
+                android:textSize="17dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:weightSum="8"
+            android:background="@drawable/shape_list"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp">
+            <ImageView
+                android:id="@+id/fish_image1"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/pic1" /></LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="1dp"
+                android:background="#000000"/>
+            <TextView
+                android:id="@+id/fish_name1"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:layout_weight="7"
+                android:fontFamily="@font/slkscr"
+                android:gravity="center"
+                android:text="DO"
+                android:textColor="#816D6D6D"
+                android:textSize="17dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:weightSum="8"
+            android:layout_margin="2dp"
+            android:background="@drawable/shape_list"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp">
+            <ImageView
+                android:id="@+id/fish_image2"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/pic1" /></LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="1dp"
+                android:background="#000000"/>
+            <TextView
+                android:id="@+id/fish_name2"
+                android:textColor="#816D6D6D"
+                android:fontFamily="@font/slkscr"
+                android:text="RE"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:layout_weight="7"
+                android:textSize="17dp"
+        />
+
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:weightSum="8"
+        android:layout_margin="2dp"
+        android:background="@drawable/shape_list"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp">
+            <ImageView
+                android:id="@+id/fish_image3"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/pic1" /></LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_height="1dp"
+            android:background="#000000"/>
+            <TextView
+                android:id="@+id/fish_name3"
+                android:textColor="#816D6D6D"
+                android:fontFamily="@font/slkscr"
+                android:text="MI"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:layout_weight="7"
+                android:textSize="17dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_list"
+            android:layout_margin="2dp"
+            android:weightSum="8"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp">
+            <ImageView
+                android:id="@+id/fish_image4"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/pic1" /></LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="1dp"
+                android:background="#000000"/>
+            <TextView
+                android:id="@+id/fish_name4"
+                android:textColor="#816D6D6D"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:text="FA"
+                android:fontFamily="@font/slkscr"
+                android:gravity="center"
+                android:layout_weight="7"
+                android:textSize="17dp"
+              />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_list"
+            android:layout_margin="2dp"
+            android:weightSum="8"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp">
+            <ImageView
+                android:id="@+id/fish_image5"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/pic1" /></LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#000000"/>
+            <TextView
+                android:id="@+id/fish_name5"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:textColor="#816D6D6D"
+                android:fontFamily="@font/slkscr"
+                android:text="SOL"
+                android:gravity="center"
+                android:layout_weight="7"
+                android:textSize="17dp"
+            />
+
+    </LinearLayout>
+</LinearLayout>
+    <!-- Notice -->
+    </HorizontalScrollView>
+
+
+    <!-- 닫기 버튼 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_margin="17dp"
+            android:background="#000000"
+            android:padding="5dp"
+            android:gravity="center"
+            android:onClick="mOnClose"
+            android:fontFamily="@font/slkscr"
+            android:text="OK"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+    </LinearLayout>
+    <!--// 닫기 버튼 -->
+    </LinearLayout>
+    </LinearLayout>

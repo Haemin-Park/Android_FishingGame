@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "79380528999",
+    "firebase_url": "https://gamephm-eb64f.firebaseio.com",
+    "project_id": "gamephm-eb64f",
+    "storage_bucket": "gamephm-eb64f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79380528999:android:93d459c4e8461da49db9c2",
+        "android_client_info": {
+          "package_name": "phm.example.cc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "79380528999-o3ersje2kksnskd241o5eb90ef9vrmbs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9Yo324DAp0o2PFg5ZlRE_FZm2SkTZCBU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "79380528999-o3ersje2kksnskd241o5eb90ef9vrmbs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
