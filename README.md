@@ -3,5 +3,4 @@
 
 시연 영상: https://youtu.be/_n2YhF6vw_c
 
-
-<iframe width="935" height="526" src="https://www.youtube.com/embed/_n2YhF6vw_c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Video Label](http://img.youtube.com/vi/_n2YhF6vw_c/0.jpg)](https://youtu.be/_n2YhF6vw_c?t=0s)
