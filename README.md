@@ -3,4 +3,4 @@
 
 시연 영상: https://youtu.be/_n2YhF6vw_c
 
-[![Video Label](http://img.youtube.com/vi/_n2YhF6vw_c/0.jpg)](https://youtu.be/_n2YhF6vw_c?t=0s)
+[![Video Label](https://user-images.githubusercontent.com/54823396/79413321-93f70f80-7fe2-11ea-9676-c7824278552e.gif))](https://youtu.be/_n2YhF6vw_c?t=0s)
