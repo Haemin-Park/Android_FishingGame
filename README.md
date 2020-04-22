@@ -1,5 +1,5 @@
 # Android_FishingGame
-[AndroidStudio] AndroidStudio TermProject- Fishing Game:tropical_fish:
+[AndroidStudio] AndroidStudio TermProject- :tropical_fish:Fishing Game
 
 Click URL or GIF: https://youtu.be/_n2YhF6vw_c 
 
