@@ -1,5 +1,5 @@
 # [AndroidStudio TermProject] :tropical_fish: Fishing Game
-( ※ 이미지, 배경음악, 폰트, google.json 포함 X ※ )
+( ※ 이미지, 배경음, 폰트, google.json 포함 X ※ )
 
 Click URL or GIF: https://youtu.be/_n2YhF6vw_c 
 
