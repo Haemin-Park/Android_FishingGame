@@ -43,7 +43,7 @@
         </LinearLayout>
 
 
-        <phm.example.cc.RodDraw
+        <phm.example.cc.GameView
             android:id="@+id/game"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />

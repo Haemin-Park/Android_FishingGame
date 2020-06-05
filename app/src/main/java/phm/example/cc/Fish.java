@@ -3,25 +3,22 @@ package phm.example.cc;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 
 import java.util.Random;
 
 public class Fish {
-    final static int ENTER = 1;                           // 캐릭터 입장
+    final static int ENTER = 1;
 
-    public int status;                                        // 캐릭터의 상태(위의 1~7)
+    public int status;
 
-    public int x, y;                                          // 좌표
-    public int w, h;                                          // 크기
-    public boolean isDead;                               // 사망
+    public int x, y;
+    public int w, h;
+    public boolean isDead;
     public boolean isWrongObstacle;
 
-    private float sx, sy;                                    // 캐릭터 이동 속도
+    public Bitmap fish;
 
-    public Bitmap fish,fish2;    // 16방향 이미지
-
-    private int delay, dir, len;                              // 입장시 지연시간, 현재의 방향, 남은 거리
+    private int delay;
 
     private Random rnd = new Random();             // 난수
 
@@ -37,14 +34,7 @@ public class Fish {
     public Fish(int screen_width, int screen_height) {
         this.screen_width = screen_width;
         this.screen_height = screen_height;
-        //Log.i("전달받은 스크린 넓이","" + screen_width);
-        // 내용 없음
-
     }
-
-    //--------------------------------
-    // Sprite 만들기
-    //--------------------------------
 
     public void MakeFish(int x, int y, int obstacle_num) {
 
@@ -52,55 +42,34 @@ public class Fish {
         this.y = y;
         this.obstacle_num = obstacle_num;
 
-        fish = BitmapFactory.decodeResource(RodDraw.mContext.getResources(), obstaclesID[obstacle_num]);
+        fish = BitmapFactory.decodeResource(GameView.mContext.getResources(), obstaclesID[obstacle_num]);
 
         w = fish.getWidth() ;
         h = fish.getHeight() ;
 
 
-        ResetSprite();
+        ResetFish();
     }
 
-    //--------------------------------
-    // Reset Sprite
-    //--------------------------------
-    public void ResetSprite() {
+    public void ResetFish() {
 
-        status = ENTER;                                                                     // 초기 상태는 입장
+        status = ENTER;
         isDead = false; //------------------------------------------------------------------------------------------------------------------------------------------------ 수정
         isWrongObstacle = false;
     }
 
-
-    //--------------------------------
-    // GetDir - 현위치의 방향과 거리
-    //--------------------------------
-    private void GetDir(int col) {
-        dir = 1;                                       // 이동할 방향
-        len = screen_width;                                     // 이동할 거리
-
-        sx = 1;                     // 이동 속도  .......... ⑤
-        sy = 1;
-
-    }
-    //--------------------------------
-    // Move
-    //--------------------------------
     public void Move() {
         if (isDead) return;// 사망자는 자격 없음
         if (isWrongObstacle) return;//폭탄도 움직일 자격 X ------------------------------------------------------------------------------------------------------------------------------- 수정
         switch (status) {
-            case ENTER:             // 캐릭터 입장
-                EnterSprite();
+            case ENTER:
+                EnterFish();
                 break;
 
         }
     }
 
-    //--------------------------------
-    // Enter Sprite
-    //--------------------------------
-    public void EnterSprite() {
+    public void EnterFish() {
 
         final int v_x, v_y;
         Random r_time = new Random(); //객체생성
@@ -132,10 +101,6 @@ public class Fish {
                 back_y = 0;
             }
         }
-        //y += (int) (sy * 8);
 
-
-        //len--;
-        //if (len >= 0) return;            // 이동할 거리가 남았는가?
     }
 }

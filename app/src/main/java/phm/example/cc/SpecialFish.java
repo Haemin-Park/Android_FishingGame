@@ -1,6 +1,5 @@
 package phm.example.cc;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -8,19 +7,18 @@ import android.util.Log;
 import java.util.Random;
 
 public class SpecialFish {
-    final static int ENTER = 1;                           // 캐릭터 입장
+    final static int ENTER = 1;
 
-    public int status;                                        // 캐릭터의 상태(위의 1~7)
+    public int status;
 
-    public int x, y;                                          // 좌표
-    public int w, h;                                          // 크기
-    public boolean isDead;                               // 사망
+    public int x, y;
+    public int w, h;
+    public boolean isDead;
     public boolean isWrongObstacle;
 
-    public Bitmap fish;    // 16방향 이미지
-    // 캐릭터의 종류와 번호
+    public Bitmap fish;
 
-    private int delay;                              // 입장시 지연시간, 현재의 방향, 남은 거리
+    private int delay;
 
     public int screen_width, screen_height;
     public int back_x = 0, back_y = 0;
@@ -33,9 +31,6 @@ public class SpecialFish {
     public SpecialFish(int screen_width, int screen_height) {
         this.screen_width = screen_width;
         this.screen_height = screen_height;
-        //Log.i("전달받은 스크린 넓이","" + screen_width);
-        // 내용 없음
-
     }
 
     public void MakeFish(int x, int y) {
@@ -43,45 +38,35 @@ public class SpecialFish {
         this.x = x;
         this.y = y;
 
-        fish = BitmapFactory.decodeResource(RodDraw.mContext.getResources(), R.drawable.mermaid);
+        fish = BitmapFactory.decodeResource(GameView.mContext.getResources(), R.drawable.mermaid);
 
         w = fish.getWidth();
         h = fish.getHeight();
 
 
-        ResetSprite();
+        ResetFish();
     }
 
-    //--------------------------------
-    // Reset Sprite
-    //--------------------------------
-    public void ResetSprite() {
+    public void ResetFish() {
 
-        status = ENTER;                                                                     // 초기 상태는 입장
+        status = ENTER;
         isDead = false; //------------------------------------------------------------------------------------------------------------------------------------------------ 수정
         isWrongObstacle = false;
     }
 
-
-    //--------------------------------
-    // Move
-    //--------------------------------
     public void Move() {
         if (isDead) return;// 사망자는 자격 없음
         if (isWrongObstacle)
             return;//폭탄도 움직일 자격 X ------------------------------------------------------------------------------------------------------------------------------- 수정
         switch (status) {
             case ENTER:             // 캐릭터 입장
-                EnterSprite();
+                EnterFish();
                 break;
 
         }
     }
 
-    //--------------------------------
-    // Enter Sprite
-    //--------------------------------
-    public void EnterSprite() {
+    public void EnterFish() {
 
         final int v_x, v_y;
         v_y = (r_time.nextInt(50) + 10);

@@ -1,18 +1,15 @@
 package phm.example.cc;
 
 public class FishingFloat {
-    public float x, y;                            // 위치
-    public float w, h;                            // 폭과 높이
+    public float x, y;
+    public float w, h;
 
-    //--------------------------------
-    // 생성자
-    //--------------------------------
-    public FishingFloat(float x, float y) {                     // 초기 위치
+    public FishingFloat(float x, float y) {
 
         this.x = x;
         this.y = y;
 
-        w = 25;           // 우주선의 폭과 높이
+        w = 25;
         h = 25;
 
     }

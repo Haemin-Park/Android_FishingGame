@@ -1,6 +1,9 @@
 package phm.example.cc;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +11,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Display;
@@ -16,10 +20,14 @@ import android.view.SurfaceView;
 import android.view.WindowManager;
 import java.util.Random;
 
+import static android.content.Context.MODE_PRIVATE;
 import static android.content.Context.WINDOW_SERVICE;
 
 
-public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
+public class GameView extends SurfaceView implements SurfaceHolder.Callback {
+
+    MediaPlayer mediaPlayer_bg, mediaPlayer_fh_caught, mediaPlayer_ob_caught;
+    SharedPreferences sf;
 
     SurfaceHolder mHolder;
 
@@ -43,7 +51,6 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
     int obstacle_h[]={0, 0, 0, 0, 0};
 
     public int coin;
-    int collision_stop[] = {0, 0, 0, 0, 0};
     int change_inspec[] = {0, 0, 0, 0, 0, 0, 0, 0};
     int obstacle_inspec[] = {0, 0, 0, 0, 0, 0, 0, 0, 8};//장애물 구별 만약 index 값이 5, 6, 7이면 장애물 --------------------------------------------------------------------------------------------------- 추가
 
@@ -53,16 +60,18 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
     Bitmap[] imgfish;
     Bitmap[] imgc = new Bitmap[8];
 
-    static Fish[] sprite_Thread;
+    static Fish[] fish_Thread;
     static SpecialFish specialFish;
     static Coin[] coin_Thread;
     public boolean isResult=false;
     public boolean isCoin=false;
     Bitmap specialFish_bitmap;
 
+    int scoin;
 
-    public RodDraw(Context context, AttributeSet attrs) { //이미지 불러오기
+    public GameView(Context context, AttributeSet attrs) { //이미지 불러오기
         super(context, attrs);
+        this.mContext = context;
 
         SurfaceHolder holder = getHolder();
         holder.addCallback(this);
@@ -75,6 +84,14 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
         MakeStage();
         setFocusable(true);// View가 Focus받기
 
+        sf = mContext.getSharedPreferences("sFile2", MODE_PRIVATE);
+        scoin = sf.getInt("coin",0);;
+        coin = scoin;
+
+        mediaPlayer_bg = MediaPlayer.create(mContext, R.raw.rock_splash);
+        mediaPlayer_bg.setLooping(true);
+        mediaPlayer_bg.start();
+
 
     }
     private void InitGame() {
@@ -83,14 +100,12 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
         Width = display.getWidth();
         Height = display.getHeight();
 
-        //txt=(TextView)findViewById(R.id.coin);
-
-        sprite_Thread = new Fish[5];
+        fish_Thread = new Fish[5];
         specialFish = new SpecialFish(Width, Height);
         coin_Thread=new Coin[5];
-        for(int i = 0; i < sprite_Thread.length; i++){
+        for(int i = 0; i < fish_Thread.length; i++){
             
-            sprite_Thread[i] = new Fish(Width,Height);
+            fish_Thread[i] = new Fish(Width,Height);
 
         }
         for(int i = 0; i < coin_Thread.length; i++){
@@ -104,19 +119,19 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
             Random r_time = new Random(); //객체생성
             r_img_n_1 = r_time.nextInt(8);//이부분을 바꾸면 물고기 이외의 장애물 나옴
 
-            imgfish[i] = BitmapFactory.decodeResource(RodDraw.mContext.getResources(), obstaclesID[r_img_n_1]);
+            imgfish[i] = BitmapFactory.decodeResource(GameView.mContext.getResources(), obstaclesID[r_img_n_1]);
             obstacle_inspec[i] = r_img_n_1;//--------------------------------------------------------------------------------------------------  for문부터 여기까지 추가
 
         }
-        specialFish_bitmap = BitmapFactory.decodeResource(RodDraw.mContext.getResources(), R.drawable.mermaid);
+        specialFish_bitmap = BitmapFactory.decodeResource(GameView.mContext.getResources(), R.drawable.mermaid);
         obstacle_inspec[imgfish.length - 1] = 8;
 
     }
 
     public static void MakeStage() {
-        for(int i = 0; i < sprite_Thread.length ; i++){
+        for(int i = 0; i < fish_Thread.length ; i++){
 
-            sprite_Thread[i].MakeFish((i)*200, Height/11*5 + i * 130, i);
+            fish_Thread[i].MakeFish((i)*200, Height/11*5 + i * 130, i);
 
         }
 
@@ -127,6 +142,59 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
 
         specialFish.MakeFish(Width/2, Height/9 * 10);
 
+
+    }
+
+    void result(){
+        Intent intent = new Intent(mContext, PopupActivity.class);
+
+        if(isResult)
+        {
+
+            if(obstacle_inspec[num]>=5&&obstacle_inspec[num]<8) {
+                mediaPlayer_bg.stop();
+                intent.putExtra("result", "FAILURE...");
+                mediaPlayer_ob_caught = MediaPlayer.create(mContext, R.raw.fail);
+                mediaPlayer_ob_caught.start();
+
+            }else {
+                mediaPlayer_bg.stop();
+                intent.putExtra("result", "SUCCESS!");
+                mediaPlayer_fh_caught = MediaPlayer.create(mContext, R.raw.success);
+                mediaPlayer_fh_caught.start();
+            }
+            intent.putExtra("img_num", obstacle_inspec[num]);
+            mContext.startActivity(intent);
+            isResult=false;
+
+            SharedPreferences sharedPreferences = mContext.getSharedPreferences("sFile2", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("img"+obstacle_inspec[num],obstacle_inspec[num]); // key, value를 이용하여 저장하는 형태
+
+            editor.commit();
+
+            ((Activity) mContext).finish();
+
+        }
+        if(isCoin){
+
+            mediaPlayer_bg.stop();
+            intent.putExtra("result", "GOOD!");
+            mediaPlayer_fh_caught = MediaPlayer.create(mContext, R.raw.success);
+            mediaPlayer_fh_caught.start();
+
+            intent.putExtra("img_num", 9);
+            mContext.startActivity(intent);
+            isCoin=false;
+
+            SharedPreferences sharedPreferences = mContext.getSharedPreferences("sFile2", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("coin",coin); // key, value를 이용하여 저장하는 형태
+            editor.commit();
+
+            ((Activity) mContext).finish();
+
+        }
 
     }
     //-------------------------------------
@@ -143,7 +211,6 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
     //  SurfaceView가 바뀔 때 실행되는 부분
     //-------------------------------------
     public void surfaceChanged(SurfaceHolder arg0, int format, int width, int height) {
-
 
 
     }
@@ -241,8 +308,8 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
 
 
         if(rd==1) {
-            // 모든 적기에 대해서 조사
-            for (int i = 0; i < sprite_Thread.length; i++) {
+
+            for (int i = 0; i < fish_Thread.length; i++) {
 
                 rx=Width/2-y-25;
                 ry=Height/3+accY/6*5;
@@ -251,8 +318,8 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
 
                 FishingFloat g=new FishingFloat(rx,ry);
 
-                fx = sprite_Thread[i].x;
-                fy = sprite_Thread[i].y;
+                fx = fish_Thread[i].x;
+                fy = fish_Thread[i].y;
                 fw = obstacle_w[i];
                 fh = obstacle_h[i];
 
@@ -264,12 +331,12 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
                 if (g.x <= fx && g.x + g.w >= fx || fx <= g.x && fx + fw >= g.x) {
                     if (g.y <= fy && g.y + g.h >= fy || fy <= g.y && fy + fh >= g.y) {
                         if(obstacle_inspec[i] <5){//물고기의 개수에 따라 변경하기--------------------------------------------------------------------------------------------- 이 부분 추가
-                            sprite_Thread[i].isDead = true;
+                            fish_Thread[i].isDead = true;
                             StopThread();
                             num=i;
                             isResult=true;
                         }else{
-                            sprite_Thread[i].isWrongObstacle = true;//----------------------------------------------------------------------------------------------------------------------- 이 부분 추가
+                            fish_Thread[i].isWrongObstacle = true;//----------------------------------------------------------------------------------------------------------------------- 이 부분 추가
                             StopThread();
                             num=i;
                             isResult=true;
@@ -328,8 +395,8 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
             r_width = r_time.nextInt(Width - 300);//이부분을 바꾸면 물고기 이외의 장애물 나옴
 
 
-            for(int i = 0 ; i < sprite_Thread.length ; i++){
-                sprite_Thread[i].Move();
+            for(int i = 0 ; i < fish_Thread.length ; i++){
+                fish_Thread[i].Move();
 
             }
             for(int i = 0 ; i < coin_Thread.length ; i++){
@@ -352,45 +419,40 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
         //  DrawAll
         //-------------------------------------
         public void DrawAll(Canvas canvas) {
-            Bitmap f_catch = BitmapFactory.decodeResource(RodDraw.mContext.getResources(), R.drawable.f_catch);
-            Bitmap bump = BitmapFactory.decodeResource(RodDraw.mContext.getResources(), R.drawable.bump);
-            for (int i = 0; i < sprite_Thread.length; i++) {
-                if (sprite_Thread[i].back_x == 0 && change_inspec[i] == 1) {
+            Bitmap f_catch = BitmapFactory.decodeResource(GameView.mContext.getResources(), R.drawable.f_catch);
+            Bitmap bump = BitmapFactory.decodeResource(GameView.mContext.getResources(), R.drawable.bump);
+            for (int i = 0; i < fish_Thread.length; i++) {
+                if (fish_Thread[i].back_x == 0 && change_inspec[i] == 1) {
                     final int r_img_n_1;
                     //객체생성
                     r_img_n_1 = r_time.nextInt(8);//이부분을 바꾸면 물고기 이외의 장애물 나옴
-                    imgfish[i] = BitmapFactory.decodeResource(RodDraw.mContext.getResources(), obstaclesID[r_img_n_1]);
+                    imgfish[i] = BitmapFactory.decodeResource(GameView.mContext.getResources(), obstaclesID[r_img_n_1]);
 
                     obstacle_inspec[i] = r_img_n_1;//-----------------------------------------------------------------------------------------------------------------------------------------------obstacle_inspec 부분 다 추가
                     change_inspec[i] = 0;
                 }
-                if (sprite_Thread[i].back_x == 1 && change_inspec[i] == 0)
+                if (fish_Thread[i].back_x == 1 && change_inspec[i] == 0)
                     change_inspec[i] = 1;
 
 
             }
             Paint paint = new Paint();
-            for (int i = 0; i < sprite_Thread.length; i++) {
+            for (int i = 0; i < fish_Thread.length; i++) {
 
-                if (sprite_Thread[i].isWrongObstacle) {
-                    canvas.drawBitmap(bump, sprite_Thread[i].x, sprite_Thread[i].y, null);
-                    sprite_Thread[i].isDead = true;//---------------------------------------------------------------------------------------------------------------------------------------- 빼도 됨
+                if (fish_Thread[i].isWrongObstacle) {
+                    canvas.drawBitmap(bump, fish_Thread[i].x, fish_Thread[i].y, null);
+                    fish_Thread[i].isDead = true;//---------------------------------------------------------------------------------------------------------------------------------------- 빼도 됨
                 } else {
-                    if (!sprite_Thread[i].isDead) {//살아있으면
+                    if (!fish_Thread[i].isDead) {//살아있으면
 
-                        canvas.drawBitmap(imgfish[i], sprite_Thread[i].x, sprite_Thread[i].y, null);//변경된 x값과 y값에 물고기를 그려넣자(갱신)
-                        //paint.setColor(Color.argb(60, 20, 20, 20));
+                        canvas.drawBitmap(imgfish[i], fish_Thread[i].x, fish_Thread[i].y, null);//변경된 x값과 y값에 물고기를 그려넣자(갱신)
 
-                        //int obstacle_w, obstacle_h;
                         obstacle_w[i] = imgfish[i].getWidth();
                         obstacle_h[i] = imgfish[i].getHeight();
-                        //canvas.drawRect(sprite_Thread[i].x, sprite_Thread[i].y, sprite_Thread[i].x + obstacle_w[i], sprite_Thread[i].y + obstacle_h[i], paint);
 
                     }
                     if (!specialFish.isWrongObstacle) {
                         if (!specialFish.isDead) {//살아있으면
-                            //paint.setColor(Color.argb(60, 20, 20, 20));
-                            //canvas.drawRect(specialFish.x, specialFish.y, specialFish.x + specialFish.w, specialFish.y + specialFish.h, paint);
                             canvas.drawBitmap(specialFish_bitmap, specialFish.x, specialFish.y, null);//변경된 x값과 y값에 물고기를 그려넣자(갱신)
                         }
                     }
@@ -399,14 +461,13 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
             }
             for (int i = 0; i < coin_Thread.length; i++) {
                 if (!coin_Thread[i].isDead)//살아있으면
-                    //if(sprite_Thread[i].back_x==0)
                     canvas.drawBitmap(f_catch, coin_Thread[i].x, coin_Thread[i].y, null);//변경된
 
             }
             canvas.drawBitmap(f_catch, Width - Width / 4, 50, null);
 
         }
-//////////////////////////////////////////////////////////////////////////
+
         public void draw(Canvas canvas) { //이미지를 그려줌.
 
             Paint paint = new Paint();
@@ -420,8 +481,7 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
                     R.drawable.c6, R.drawable.c7, R.drawable.c8};
 
 
-                imgc[0] = BitmapFactory.decodeResource(RodDraw.mContext.getResources(), cID[result]);
-                //imgc[0] = Bitmap.createScaledBitmap(imgc[0], Width/7, Height/9, true);
+                imgc[0] = BitmapFactory.decodeResource(GameView.mContext.getResources(), cID[result]);
                 canvas.drawBitmap(imgc[0], Width/2-20, 11*Height/35+30, null);
 
 
@@ -431,9 +491,7 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
             canvas.drawLine( Width/2, (Height/5)*2,Width/2-y, Height/4, paint);
             paint.setStrokeWidth(3);
             canvas.drawLine(Width/2-y, Height/4, Width/2-y, Height/3, paint);
-//얘 하나 추가--------------------------------------낚시줄 위아래
             canvas.drawLine(Width/2-y, Height/4, Width/2-y, Height/3+accY/6*5, paint);
-//-----------------------------------------------------------------------
 
             paint.setColor(Color.RED);
             canvas.drawRect(Width/2-y-25/2, Height/3+accY/6*5, Width/2-y+25/2,Height/3+accY/6*5-50/2,paint);
@@ -462,6 +520,7 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
                     synchronized (mHolder) {
 
                         CheckCollision();
+                        result();
                         MoveAll();// 모든 캐릭터 이동
                         draw(canvas);
                         DrawAll(canvas);// Canvas에 그리기
@@ -515,12 +574,11 @@ public class RodDraw extends SurfaceView implements SurfaceHolder.Callback {
         public void run(){
             while(true){
                 try {
-                    // 스레드에게 수행시킬 동작들 구현
-                    Thread.sleep(1000); //Thread를 잠재운다
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                timer ++;//1초마다 증가
+                timer ++;
             }
         }
     }

@@ -1,10 +1,7 @@
 package phm.example.cc;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +13,7 @@ public class PopupActivity extends Activity {
 
     TextView txtText;
     ImageView imgView;
-    RodDraw ss;
+    GameView ss;
     private Activity activity;
 
     @Override

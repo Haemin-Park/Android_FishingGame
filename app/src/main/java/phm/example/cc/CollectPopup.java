@@ -2,7 +2,6 @@ package phm.example.cc;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -15,7 +14,6 @@ import static android.graphics.Color.BLACK;
 
 public class CollectPopup extends Activity {
 
-    TextView txtText;
     Integer[] num={0,0,0,0,0,0,0,0,0};
     Integer[] fishID = {R.drawable.fish1, R.drawable.fish2, R.drawable.fish3, R.drawable.fish4, R.drawable.fish5, R.drawable.paperplain_dotted, R.drawable.shoes_dotted, R.drawable.toletpaper_dotted, R.drawable.mermaid};
     Integer[] layoutID={R.id.fish_image1, R.id.fish_image2, R.id.fish_image3, R.id.fish_image4, R.id.fish_image5,};
@@ -37,15 +35,11 @@ public class CollectPopup extends Activity {
             num[i] = intent.getIntExtra("img" + i, 0);
         }
         for(int i=0; i<fishID.length;i++) {
-            Log.i("에",i+"뭐가 저장되는거야"+num[i]);
             if(num[i]<5){
                     ImageView imgv = (ImageView) findViewById(layoutID[num[i]]);
                     imgv.setImageResource(fishID[num[i]]);
                     TextView txtText = (TextView) findViewById(TextID[num[i]]);
                     txtText.setTextColor(BLACK);
-                    //String text=sprite_Thread[i].obstaclesID[i].toString();
-                    //String data = intent.getStringExtra(text);
-                    //txtText.setText(data);
                 }
             else if(num[i]==8){
             TextView txtText1=(TextView) findViewById(R.id.sfish_name);
@@ -73,13 +67,6 @@ public class CollectPopup extends Activity {
         }
         return true;
     }
-/*
-    @Override
-    public void onBackPressed() {
-        //안드로이드 백버튼 막기
-        return;
-    }
 
- */
 }
 
