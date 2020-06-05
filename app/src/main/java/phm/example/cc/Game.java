@@ -42,11 +42,11 @@ public class Game extends Activity {
     Integer[] num={0,0,0,0,0,0,0,0,0};
     SharedPreferences sf;
     SharedPreferences sharedPreferences;
+    Integer btn1=0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         gactivity = Game.this;
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -77,6 +77,7 @@ public class Game extends Activity {
                 //저장을 하기위해 editor를 이용하여 값을 저장시켜준다.
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt("coin",gv.coin); // key, value를 이용하여 저장하는 형태
+                editor.putInt("btn",btn1);
                 //최종 커밋
                 editor.commit();
 
@@ -86,7 +87,7 @@ public class Game extends Activity {
         sf = getSharedPreferences("sFile2", MODE_PRIVATE);
         coin=sf.getInt("coin",0);;
         gv.coin=coin;
-
+        btn1=sf.getInt("btn",0);
     }
 
     public void mOnPopupClick(View v){
@@ -100,6 +101,28 @@ public class Game extends Activity {
         startActivityForResult(intent, 1);
     }
 
+    public void sOnPopupClick(View v){
+        //데이터 담아서 팝업(액티비티) 호출
+        Intent intent = new Intent(this, StorePopup.class);
+        intent.putExtra("character",gv.result );
+        intent.putExtra("coin",gv.coin);
+        if(sf.getInt("btn",btn1)==1)btn1=sf.getInt("btn",btn1);
+        intent.putExtra("btn",btn1);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK) // 액티비티가 정상적으로 종료되었을 경우
+        {
+            if(requestCode==1) // requestCode==1 로 호출한 경우에만 처리합니다.
+            {
+                gv.result=data.getIntExtra("res",0);
+                gv.coin=data.getIntExtra("coin",coin);
+                btn1=data.getIntExtra("btn",0);
+            }
+        }}
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -198,6 +221,11 @@ public class Game extends Activity {
             }
 
             if (System.currentTimeMillis() <= backKeyClickTime + 2000){
+                SharedPreferences sharedPreferences = getSharedPreferences("sFile2", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("coin",gv.coin); // key, value를 이용하여 저장하는 형태
+                editor.putInt("btn",btn1);
+
                 activity.finish();
                 gv.mediaPlayer_bg.stop();
                 gv.StopGame();

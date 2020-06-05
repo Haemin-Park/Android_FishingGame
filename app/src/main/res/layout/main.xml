@@ -40,6 +40,24 @@
                 android:text="BOOK"
                 android:textSize="10pt"/>
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <Button
+                android:id="@+id/store"
+                android:layout_marginRight="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00ff0000"
+                android:fontFamily="@font/slkscr"
+                android:onClick="sOnPopupClick"
+                android:text="STORE"
+                android:textSize="10pt"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
 

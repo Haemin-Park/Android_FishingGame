@@ -18,7 +18,10 @@
             android:name=".PopupActivity"
             android:theme="@android:style/Theme.Dialog" />
         <activity
-            android:name=".CollectPopup"
+        android:name=".CollectPopup"
+        android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".StorePopup"
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".MainActivity">
             <intent-filter>

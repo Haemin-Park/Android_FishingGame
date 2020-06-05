@@ -47,6 +47,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public int num=0;
     Random r_time = new Random();
 
+    Bitmap f_catch;
+    Bitmap bump;
+    Bitmap imgBack;
+
     int obstacle_w[]= {0, 0, 0, 0, 0};
     int obstacle_h[]={0, 0, 0, 0, 0};
 
@@ -125,6 +129,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
         specialFish_bitmap = BitmapFactory.decodeResource(GameView.mContext.getResources(), R.drawable.mermaid);
         obstacle_inspec[imgfish.length - 1] = 8;
+
+        f_catch = BitmapFactory.decodeResource(GameView.mContext.getResources(), R.drawable.f_catch);
+        bump = BitmapFactory.decodeResource(GameView.mContext.getResources(), R.drawable.bump);
+        imgBack = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.bb);
 
     }
 
@@ -415,12 +423,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
 
         }
-        //-------------------------------------
-        //  DrawAll
-        //-------------------------------------
         public void DrawAll(Canvas canvas) {
-            Bitmap f_catch = BitmapFactory.decodeResource(GameView.mContext.getResources(), R.drawable.f_catch);
-            Bitmap bump = BitmapFactory.decodeResource(GameView.mContext.getResources(), R.drawable.bump);
+
             for (int i = 0; i < fish_Thread.length; i++) {
                 if (fish_Thread[i].back_x == 0 && change_inspec[i] == 1) {
                     final int r_img_n_1;
@@ -446,13 +450,18 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                     if (!fish_Thread[i].isDead) {//살아있으면
 
                         canvas.drawBitmap(imgfish[i], fish_Thread[i].x, fish_Thread[i].y, null);//변경된 x값과 y값에 물고기를 그려넣자(갱신)
+                        //paint.setColor(Color.argb(60, 20, 20, 20));
 
+                        //int obstacle_w, obstacle_h;
                         obstacle_w[i] = imgfish[i].getWidth();
                         obstacle_h[i] = imgfish[i].getHeight();
+                        //canvas.drawRect(sprite_Thread[i].x, sprite_Thread[i].y, sprite_Thread[i].x + obstacle_w[i], sprite_Thread[i].y + obstacle_h[i], paint);
 
                     }
                     if (!specialFish.isWrongObstacle) {
                         if (!specialFish.isDead) {//살아있으면
+                            //paint.setColor(Color.argb(60, 20, 20, 20));
+                            //canvas.drawRect(specialFish.x, specialFish.y, specialFish.x + specialFish.w, specialFish.y + specialFish.h, paint);
                             canvas.drawBitmap(specialFish_bitmap, specialFish.x, specialFish.y, null);//변경된 x값과 y값에 물고기를 그려넣자(갱신)
                         }
                     }
@@ -461,28 +470,28 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             }
             for (int i = 0; i < coin_Thread.length; i++) {
                 if (!coin_Thread[i].isDead)//살아있으면
+                    //if(sprite_Thread[i].back_x==0)
                     canvas.drawBitmap(f_catch, coin_Thread[i].x, coin_Thread[i].y, null);//변경된
 
             }
             canvas.drawBitmap(f_catch, Width - Width / 4, 50, null);
 
         }
-
+        //////////////////////////////////////////////////////////////////////////
         public void draw(Canvas canvas) { //이미지를 그려줌.
 
             Paint paint = new Paint();
 
-
-            Bitmap imgBack = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.bb);
             imgBack = Bitmap.createScaledBitmap(imgBack, Width, Height, true);
-            canvas.drawBitmap(imgBack, 0, 0, null);
+            canvas.drawBitmap(imgBack, 0, 0, paint);
 
             Integer[] cID = {R.drawable.c1, R.drawable.c2, R.drawable.c3, R.drawable.c4, R.drawable.c5,
                     R.drawable.c6, R.drawable.c7, R.drawable.c8};
 
 
-                imgc[0] = BitmapFactory.decodeResource(GameView.mContext.getResources(), cID[result]);
-                canvas.drawBitmap(imgc[0], Width/2-20, 11*Height/35+30, null);
+            imgc[0] = BitmapFactory.decodeResource(GameView.mContext.getResources(), cID[result]);
+
+            canvas.drawBitmap(imgc[0], Width/2-20, 11*Height/35+30, null);
 
 
             paint.setColor(Color.BLACK);
@@ -498,14 +507,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
             paint.setColor(Color.BLACK);
             paint.setTextSize(90);
-            AssetManager am = getResources().getAssets() ;
-            Typeface font = Typeface.createFromAsset(am, "slkscr.ttf");
-            paint.setTypeface(font);
+            //AssetManager am = getResources().getAssets() ;
+            //Typeface font = Typeface.createFromAsset(am, "slkscr.ttf");
+            //paint.setTypeface(font);
 
             canvas.drawText(coin+" ",Width-Width/7,125,paint);
 
         }
-
         //-------------------------------------
         //  스레드 본체
         //-------------------------------------
