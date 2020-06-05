@@ -9,7 +9,7 @@
  
 :white_check_mark: 모바일 기기로 낚시대 움직임 컨트롤
 
-<img src="https://user-images.githubusercontent.com/54823396/83887705-c7a11b00-a783-11ea-89ef-885b77ee0681.png" width="30%"> <img src="https://user-images.githubusercontent.com/54823396/83887458-69743800-a783-11ea-862e-08c0af3f8352.png" width="30%">
+<img src="https://user-images.githubusercontent.com/54823396/83887705-c7a11b00-a783-11ea-89ef-885b77ee0681.png" width="20%"> <img src="https://user-images.githubusercontent.com/54823396/83887458-69743800-a783-11ea-862e-08c0af3f8352.png" width="20%">
 
 :white_check_mark: 물고기 OR 코인 획득 가능
 
