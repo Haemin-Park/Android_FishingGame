@@ -1,5 +1,4 @@
 # [AndroidStudio TermProject] :tropical_fish: Fishing Game
-:heavy_exclamation_mark: 소스(이미지, 배경음, 폰트), google.json 포함 X :heavy_exclamation_mark:
 
 :point_right: URL or GIF: https://youtu.be/_n2YhF6vw_c 
 
