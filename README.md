@@ -19,4 +19,4 @@
 
 <img src="https://user-images.githubusercontent.com/54823396/83887831-f5865f80-a783-11ea-947d-c333fe38192d.png" width="40%">
 
-:white_check_mark: 파이어베이스 푸쉬 알림 기능 사용(매일 12시)
+:white_check_mark: 파이어베이스 푸쉬 알림 기능(매일 12시)
