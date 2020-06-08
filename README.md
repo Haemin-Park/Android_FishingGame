@@ -12,7 +12,7 @@
 
 :white_check_mark: 물고기 OR 코인 획득시 팝업 
 
-<img src="https://user-images.githubusercontent.com/54823396/83887598-a2aca800-a783-11ea-9e77-853bc2bcad13.jpg" width="30%"> <img src="https://user-images.githubusercontent.com/54823396/83887603-a4766b80-a783-11ea-949a-bb0c02a9b90f.jpg" width="30%">
+<img src="https://user-images.githubusercontent.com/54823396/83887603-a4766b80-a783-11ea-949a-bb0c02a9b90f.jpg" width="30%"> <img src="https://user-images.githubusercontent.com/54823396/83887598-a2aca800-a783-11ea-9e77-853bc2bcad13.jpg" width="30%"> 
 
 :white_check_mark: 상점, 도감 기능
 
