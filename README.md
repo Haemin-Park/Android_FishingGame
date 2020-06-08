@@ -10,12 +10,12 @@
 
 <img src="https://user-images.githubusercontent.com/54823396/83887705-c7a11b00-a783-11ea-89ef-885b77ee0681.png" width="20%"> <img src="https://user-images.githubusercontent.com/54823396/83887458-69743800-a783-11ea-862e-08c0af3f8352.png" width="20%">
 
-:white_check_mark: 물고기 OR 코인 획득 가능
+:white_check_mark: 물고기 OR 코인 획득시 팝업 
 
 <img src="https://user-images.githubusercontent.com/54823396/83887598-a2aca800-a783-11ea-9e77-853bc2bcad13.jpg" width="30%"> <img src="https://user-images.githubusercontent.com/54823396/83887603-a4766b80-a783-11ea-949a-bb0c02a9b90f.jpg" width="30%">
 
-:white_check_mark: 상점, 도감 기능 O
+:white_check_mark: 상점, 도감 기능
 
-<img src="https://user-images.githubusercontent.com/54823396/83887831-f5865f80-a783-11ea-947d-c333fe38192d.png" width="40%">
+<img src="https://user-images.githubusercontent.com/54823396/84000218-3c9c6c80-a99f-11ea-8bf0-ae57c46eb118.PNG" width="35%">
 
-:white_check_mark: 파이어베이스 푸쉬 알림 기능(매일 12시)
+:white_check_mark: 파이어베이스 FCM을 이용한 푸쉬 알림 기능(매일 12시)
