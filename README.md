@@ -12,7 +12,7 @@
 
 * **Control Fishing rod** 
 
-<img src="https://user-images.githubusercontent.com/54823396/89866316-497d4c80-dbea-11ea-9967-3c5ae0b6227c.PNG" height="200dp">
+<img src="https://user-images.githubusercontent.com/54823396/89887038-95d78500-dc08-11ea-9d12-104618d65a7a.PNG" height="200dp">
 
 * **Fish/Coin Popup** 
 
