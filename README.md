@@ -12,11 +12,11 @@
 
 * **Control Fishing rod** 
 
-<img src="https://user-images.githubusercontent.com/54823396/83887135-fa96df00-a782-11ea-9645-eb902336dbe6.png" height="200dp"> <img src="https://user-images.githubusercontent.com/54823396/83887140-fbc80c00-a782-11ea-9c2b-3b084557a420.png" height="200dp"> <img src="https://user-images.githubusercontent.com/54823396/83887145-fd91cf80-a782-11ea-8273-302ecca282df.jpg" height="200dp">
+<img src="https://user-images.githubusercontent.com/54823396/89866316-497d4c80-dbea-11ea-9967-3c5ae0b6227c.PNG" height="200dp">
 
 * **Fish/Coin Popup** 
 
-<img src="https://user-images.githubusercontent.com/54823396/83887705-c7a11b00-a783-11ea-89ef-885b77ee0681.png" height="110dp"> <img src="https://user-images.githubusercontent.com/54823396/83887458-69743800-a783-11ea-862e-08c0af3f8352.png" height="110dp">
+<img src="https://user-images.githubusercontent.com/54823396/89866510-a1b44e80-dbea-11ea-8592-8d4d1ee617de.png" height="130dp"> <img src="https://user-images.githubusercontent.com/54823396/89866513-a2e57b80-dbea-11ea-9ea4-95bb3f496dfc.png" height="130dp">
 
 * **Store** 
 
@@ -28,4 +28,4 @@
 
 * **Push Notification**
 
-<img src="https://user-images.githubusercontent.com/54823396/84000218-3c9c6c80-a99f-11ea-8bf0-ae57c46eb118.PNG" height="150dp">
+<img src="https://user-images.githubusercontent.com/54823396/89866392-644fc100-dbea-11ea-8c76-fc2aeef37220.png" height="150dp">
